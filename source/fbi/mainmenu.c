@@ -6,7 +6,11 @@
 #include "resources.h"
 #include "section.h"
 #include "../core/core.h"
+#include "action.h"
+#include "task/uitask.h"
 
+//I honestly have no idea what I'm doing.
+/*
 static list_item sd = {"SD", COLOR_TEXT, files_open_sd};
 static list_item ctr_nand = {"CTR NAND", COLOR_TEXT, files_open_ctr_nand};
 static list_item twl_nand = {"TWL NAND", COLOR_TEXT, files_open_twl_nand};
@@ -20,7 +24,9 @@ static list_item ext_save_data = {"Ext Save Data", COLOR_TEXT, extsavedata_open}
 static list_item system_save_data = {"System Save Data", COLOR_TEXT, systemsavedata_open};
 static list_item titledb = {"TitleDB", COLOR_TEXT, titledb_open};
 static list_item remote_install = {"Remote Install", COLOR_TEXT, remoteinstall_open};
-static list_item update = {"Update", COLOR_TEXT, update_open};
+static list_item update = {"Update", COLOR_TEXT, update_open};*/
+static list_item compose_self = {"Write notification", COLOR_TEXT, TODO}; //TODO: add the NotifyMii code somehow
+static list_item view_notifs = {"Read notifications", COLOR_TEXT, TODO}; //TODO: add the NotifyMii code somehow
 
 static void mainmenu_draw_top(ui_view* view, void* data, float x1, float y1, float x2, float y2, list_item* selected) {
     u32 logoWidth;
@@ -30,6 +36,12 @@ static void mainmenu_draw_top(ui_view* view, void* data, float x1, float y1, flo
     float logoX = x1 + (x2 - x1 - logoWidth) / 2;
     float logoY = y1 + (y2 - y1 - logoHeight) / 2;
     screen_draw_texture(TEXTURE_LOGO, logoX, logoY, logoWidth, logoHeight);
+}
+
+static void TODO() {
+    error_display(NULL, NULL, "Hey, you can't do that yet.");
+    
+    return NULL;
 }
 
 static void mainmenu_update(ui_view* view, void* data, linked_list* items, list_item* selected, bool selectedTouched) {
@@ -46,7 +58,7 @@ static void mainmenu_update(ui_view* view, void* data, linked_list* items, list_
     }
 
     if(linked_list_size(items) == 0) {
-        linked_list_add(items, &sd);
+        /*linked_list_add(items, &sd);
         linked_list_add(items, &ctr_nand);
         linked_list_add(items, &twl_nand);
         linked_list_add(items, &twl_photo);
@@ -58,8 +70,9 @@ static void mainmenu_update(ui_view* view, void* data, linked_list* items, list_
         linked_list_add(items, &ext_save_data);
         linked_list_add(items, &system_save_data);
         linked_list_add(items, &titledb);
-        linked_list_add(items, &remote_install);
-        linked_list_add(items, &update);
+        linked_list_add(items, &remote_install);*/
+        linked_list_add(items, &compose_self);
+        linked_list_add(items, &view_notifs);
     }
 }
 
